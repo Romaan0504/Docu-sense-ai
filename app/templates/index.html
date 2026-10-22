@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Browser settings -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Browser tab title -->
+    <title>DocuSense AI</title>
+
+    <!-- Load our CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}">
+</head>
+
+<body>
+    <!-- Top navigation -->
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-icon">D</div>
+
+            <div>
+                <h1>DocuSense AI</h1>
+                <p>Policy, Compliance & Contract Intelligence</p>
+            </div>
+        </div>
+
+        <div class="secure-badge">
+            <span class="status-dot"></span>
+            Local document workspace
+        </div>
+    </header>
+
+    <!-- Main website area -->
+    <main class="page-layout">
+
+        <!-- Left side: document management -->
+        <aside class="sidebar">
+            <section class="sidebar-heading">
+                <p class="eyebrow">DOCUMENT LIBRARY</p>
+                <h2>Your workspace</h2>
+                <p>
+                    Upload policy, compliance, SOP, or contract PDFs.
+                    Ask questions with page-level sources.
+                </p>
+            </section>
+
+            <!-- PDF upload box -->
+            <section class="upload-card">
+                <h3>Upload document</h3>
+                <p class="small-text">PDF only · Maximum size 25 MB</p>
+
+                <label for="pdfFile" class="drop-zone" id="dropZone">
+                    <span class="upload-icon">↑</span>
+                    <strong>Select a PDF</strong>
+                    <span>or drag and drop it here</span>
+                </label>
+
+                <!-- Hidden native file selector -->
+                <input
+                    id="pdfFile"
+                    type="file"
+                    accept=".pdf,application/pdf"
+                    hidden
+                >
+
+                <div id="selectedFile" class="selected-file hidden"></div>
+
+                <button id="uploadButton" class="primary-button" disabled>
+                    Upload and index
+                </button>
+
+                <p id="uploadStatus" class="status-message" aria-live="polite"></p>
+            </section>
+
+            <!-- Uploaded document list -->
+            <section class="documents-card">
+                <div class="section-title-row">
+                    <h3>Uploaded documents</h3>
+                    <span id="documentCount" class="count-badge">0</span>
+                </div>
+
+                <div id="documentsList" class="documents-list">
+                    <p class="empty-message">Loading documents...</p>
+                </div>
+            </section>
+        </aside>
+
+        <!-- Right side: question and answer area -->
+        <section class="assistant-area">
+            <section class="hero-card">
+                <p class="eyebrow">HIGH-TRUST DOCUMENT REVIEW</p>
+                <h2>Ask what your documents actually say.</h2>
+                <p>
+                    DocuSense AI retrieves relevant document sections before
+                    answering. Every answer includes its page-level evidence.
+                </p>
+            </section>
+
+            <!-- Ask question card -->
+            <section class="question-card">
+                <label for="questionInput">Your question</label>
+
+                <textarea
+                    id="questionInput"
+                    rows="4"
+                    maxlength="500"
+                    placeholder="Example: What is the employee data retention policy?"
+                ></textarea>
+
+                <div class="question-footer">
+                    <span id="characterCount">0 / 500</span>
+
+                    <button id="askButton" class="primary-button">
+                        Ask documents
+                    </button>
+                </div>
+
+                <p id="questionStatus" class="status-message" aria-live="polite"></p>
+            </section>
+
+            <!-- First empty screen -->
+            <section id="emptyAnswerState" class="empty-answer-state">
+                <div class="empty-icon">⌕</div>
+                <h3>Ready when you are</h3>
+                <p>
+                    Upload a PDF, then ask a question about its policies,
+                    controls, obligations, or processes.
+                </p>
+            </section>
+
+            <!-- Answer appears here after a question -->
+            <section id="answerCard" class="answer-card hidden">
+                <div class="answer-header">
+                    <div>
+                        <p class="eyebrow">DOCUMENT-GROUNDED ANSWER</p>
+                        <h3 id="displayQuestion"></h3>
+                    </div>
+
+                    <span class="answer-badge">Evidence-based</span>
+                </div>
+
+                <div id="answerText" class="answer-text"></div>
+
+                <div class="disclaimer">
+                    This response is based only on uploaded documents.
+                    It is not legal, HR, or compliance advice.
+                </div>
+
+                <!-- User feedback buttons -->
+                <div class="feedback-row">
+                    <span>Was this answer helpful?</span>
+
+                    <button id="thumbsUpButton" class="feedback-button" disabled>
+                        👍 Yes
+                    </button>
+
+                    <button id="thumbsDownButton" class="feedback-button" disabled>
+                        👎 No
+                    </button>
+                </div>
+
+                <!-- Citations appear here -->
+                <div class="sources-section">
+                    <h4>Sources used</h4>
+                    <div id="sourcesList" class="sources-list"></div>
+                </div>
+            </section>
+
+            <!-- Recent question history -->
+            <section class="history-card">
+                <div class="section-title-row">
+                    <div>
+                        <p class="eyebrow">ACTIVITY</p>
+                        <h3>Recent questions</h3>
+                    </div>
+
+                    <button id="refreshHistoryButton" class="text-button">
+                        Refresh
+                    </button>
+                </div>
+
+                <div id="historyList" class="history-list">
+                    <p class="empty-message">No questions asked yet.</p>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Load our JavaScript after page HTML is ready -->
+    <script src="{{ url_for('static', path='app.js') }}"></script>
+</body>
+</html>

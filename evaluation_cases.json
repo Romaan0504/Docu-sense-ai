@@ -1,0 +1,47 @@
+[
+    {
+        "id": "privacy-001",
+        "question": "What does the document say about protecting personal data?",
+        "expected_keywords": [
+            "data",
+            "personal",
+            "protection",
+            "privacy"
+        ]
+    },
+    {
+        "id": "privacy-002",
+        "question": "What rights do people have regarding their personal data?",
+        "expected_keywords": [
+            "rights",
+            "data",
+            "access",
+            "personal"
+        ]
+    },
+    {
+        "id": "security-001",
+        "question": "What does the cybersecurity framework say about governance?",
+        "expected_keywords": [
+            "govern",
+            "governance",
+            "risk",
+            "organization"
+        ]
+    },
+    {
+        "id": "security-002",
+        "question": "What does the document say about identifying cybersecurity risks?",
+        "expected_keywords": [
+            "identify",
+            "risk",
+            "asset",
+            "cybersecurity"
+        ]
+    },
+    {
+        "id": "no-answer-001",
+        "question": "What is the company's employee bonus amount?",
+        "expected_keywords": []
+    }
+]
